@@ -1,7 +1,7 @@
 {{ pillar['salt_managed'] }}
 
 try:
-    from settings import *
+    from .settings import *
 except ImportError:
     import sys, django
     django.utils.six.reraise(RuntimeError, *sys.exc_info()[1:])  # use RuntimeError to extend the traceback

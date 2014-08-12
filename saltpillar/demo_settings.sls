@@ -13,6 +13,6 @@ dbport: 5432
 
 secret_key: ThisIsAVeryPoorSecretKey
 
-django_settings_module: demo-app.salt_settings
+django_settings_module: demo.salt_settings
 
 ...
