@@ -47,6 +47,7 @@ psycopg2:
     - template: jinja
     - user: www-data
     - group: staff
+    - mode: 440  # this file contains our confidential codes.
     - require:
       - file: dev-track-repo
 
