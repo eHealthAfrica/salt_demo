@@ -20,7 +20,18 @@ demo-app-repo:
     - always_fetch: True
     - target: /opt/demo-app
     - user: www-data
+
+/opt/demo-app:
+  file.directory:
+    - user: www-data
     - group: staff
+    - dir_mode: 775
+    - file_mode: 664
+    - recurse:
+      - group
+      - mode
+    - require:
+      - file: demo-app-repo
 
 /opt/Envs/demo-app:
   file.directory:

@@ -4,7 +4,7 @@
 ## /srv/pillar/common.sls
 
 # tell programmers not to alter managed files:
-salt_managed: '# ** This file managed by Salt. Any changes you make here may be overwritten.  **'
+salt_managed: '# ** This file managed by Salt. Any changes you make here are temporary.  **'
 
 
 administrator_name: Robert Zebulon
