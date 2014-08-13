@@ -1,4 +1,4 @@
-{{ pillar['salt_managed'] }}
+#{{ pillar['salt_managed'] }}
 
 try:
     from .settings import *
@@ -13,7 +13,7 @@ DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-    ('Vernon Cole', 'vernon.cole@ehealthafrica.org'),
+    ("{{ pillar['administrator_name'] }}", "{{ pillar['administrator_email'] }}"),
 )
 
 DATABASES = {

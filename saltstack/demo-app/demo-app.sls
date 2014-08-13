@@ -6,22 +6,23 @@ include:
   - users
   - postgres
 
-dev-track-repo:
-  git.latest:
-    - name: https://github.com/eHealthAfrica/dev-track.git
-    - rev: master
-    - always_fetch: True
-    - target: /opt/dev-track
-    - user: www-data
-    - group: staff
+demo-app-repo:
   file.directory:
-    - name: /opt/dev-track
+    - name: /opt/demo-app
+    - makedirs: True
     - user: www-data
     - group: staff
     - dir_mode: 775
     - file_mode: 664
+  git.latest:
+    - name: https://github.com/eHealthAfrica/dev-track.git
+    - rev: master
+    - always_fetch: True
+    - target: /opt/demo-app
+    - user: www-data
+    - group: staff
 
-/opt/Envs/dev-track:
+/opt/Envs/demo-app:
   file.directory:
     - user: www-data
     - group: staff
@@ -30,28 +31,29 @@ dev-track-repo:
       - user: www-data
   virtualenv.managed:
     - system_site_packages: True
-    - requirements: /opt/dev-track/requirements.txt
+    - requirements: /opt/demo-app/requirements.txt
     - require:
       - pkg: python-virtualenv
       - pkg: python-pip
       - pkg: psycopg2
+      - file: demo-app-repo
 
 psycopg2:
   pkg:
     - name: python-psycopg2
     - installed
 
-/opt/dev-track/demo/salt_settings.py:
+/opt/demo-app/demo/salt_settings.py:
   file.managed:
-    - source: salt://demo-app/dev-track.settings.py
+    - source: salt://demo-app/demo-app.settings.py
     - template: jinja
     - user: www-data
     - group: staff
     - mode: 440  # this file contains our confidential codes.
     - require:
-      - file: dev-track-repo
+      - file: demo-app-repo
 
-/opt/dev-track/manage.py:
+/opt/demo-app/manage.py:
   file.managed:
     - mode: 775
     - source: salt://demo-app/manage.py
@@ -59,7 +61,7 @@ psycopg2:
     - user: www-data
     - group: staff
 
-/opt/dev-track/demo/wsgi.py:
+/opt/demo-app/demo/wsgi.py:
   file.managed:
     - mode: 775
     - source: salt://demo-app/wsgi.py
@@ -67,15 +69,15 @@ psycopg2:
     - user: www-data
     - group: staff
 
-/opt/Envs/dev-track/.project:
+/opt/Envs/demo-app/.project:
   file.managed:
-    - contents: "/opt/dev-track\n"
+    - contents: "/opt/demo-app\n"
     - user: www-data
     - gropu: staff
     - require:
-      - file: /opt/Envs/dev-track
+      - file: /opt/Envs/demo-app
 
-/var/log/dev-track:
+/var/log/demo-app:
   file.directory:
   - user: www-data
   - group: staff
