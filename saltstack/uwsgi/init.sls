@@ -5,7 +5,8 @@ include:
     - nginx
 
 /etc/uwsgi/vassals:
-    file.directory
+    file.directory:
+    - makedirs = True
 
 uwsgi:
     pip.installed:
@@ -19,8 +20,6 @@ uwsgi-service:
     service.running:
         - enable: True
         - name: uwsgi
-        - require:
-          - file: /etc/init/uwsgi.conf
         - watch:
           - file: /etc/uwsgi/vassals
 

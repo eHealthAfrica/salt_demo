@@ -1,6 +1,7 @@
 /etc/nginx/sites-enabled:
   file:
   - directory
+  - makedirs: True
 
 nginx:
   pkg:
