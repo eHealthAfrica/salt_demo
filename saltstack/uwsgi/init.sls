@@ -6,7 +6,7 @@ include:
 
 /etc/uwsgi/vassals:
     file.directory:
-    - makedirs = True
+    - makedirs: True
 
 uwsgi:
     pip.installed:
