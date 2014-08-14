@@ -108,4 +108,20 @@ psycopg2:
   - require:
     - user: www-data
 
+/srv/static/demo-app:
+  file.directory:
+  - makedirs: True
+  - user: www-data
+  - group: staff
+  - file_mode: 460
+  - dir_mode: 570
+
+/var/media/demo-app:
+  file.directory:
+  - makedirs: True
+  - user: www-data
+  - group: staff
+  - file_mode: 660
+  - dir_mode: 770
+
 ...

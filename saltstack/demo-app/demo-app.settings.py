@@ -27,4 +27,6 @@ DATABASES = {
                 }
 }
 
+STATIC_ROOT = '/opt/static/demo-dev'
+
 SECRET_KEY = '{{ pillar["secret_key"] }}'
