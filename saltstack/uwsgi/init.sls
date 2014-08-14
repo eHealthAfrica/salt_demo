@@ -4,6 +4,9 @@
 include:
     - nginx
 
+/etc/uwsgi/vassals:
+    file.directory
+
 uwsgi:
     pip.installed:
         - pkgs:
@@ -18,6 +21,8 @@ uwsgi-service:
         - name: uwsgi
         - require:
           - file: /etc/init/uwsgi.conf
+        - watch:
+          - file: /etc/uwsgi/vassals
 
 /etc/init/uwsgi.conf:
     file.managed:

@@ -1,10 +1,14 @@
+/etc/nginx/sites-enabled:
+  file:
+  - directory
+
 nginx:
   pkg:
     - installed
   service.running:
     - enable: True
     - watch:
-      - file: new-default
+      - file: /etc/nginx/sites-enabled
 
 default-nginx-out:    # remove the stock default file and replace with ours:
   file.absent:

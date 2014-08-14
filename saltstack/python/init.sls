@@ -19,5 +19,8 @@ python-pkgs:
 {% if grains['os'] == 'Ubuntu' %}
 /etc/environment:
   file.append:
-    - text: 'WORKON_HOME=/opt/Envs'
+    - text:
+      - 'WORKON_HOME=/opt/Envs'
+      - 'PIP_VIRTUALENV_BASE=/opt/Envs'
+      - 'PIP_RESPECT_VIRTUALENV=true'
 {% endif %}
