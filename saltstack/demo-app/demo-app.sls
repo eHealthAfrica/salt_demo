@@ -80,6 +80,17 @@ psycopg2:
     - user: www-data
     - group: staff
 
+/etc/uwsgi/vassals/demo-app-uwsgi.ini:
+  file:
+    - managed
+    - makedirs: True
+    - source: salt://demo-app/demo-app-uwsgi.ini
+    - template: jinja
+    #- touch  # touch the file to trigger the emperor to restart uWSGI instances
+    #- order: last
+    #- watch:
+    #  - file: demo-app-repo
+
 /opt/Envs/demo-app/.project:
   file.managed:
     - contents: "/opt/demo-app\n"

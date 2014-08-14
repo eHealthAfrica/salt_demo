@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python
 #{{ pillar['salt_managed'] }}
 
 from __future__ import print_function

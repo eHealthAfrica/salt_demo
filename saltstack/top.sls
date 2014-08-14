@@ -7,6 +7,7 @@ base:
     - python
 
   #local:  # on a real Salt Master, put the ID name of the server here.
+    - uwsgi
     - nginx
     - postgres
     - demo-app

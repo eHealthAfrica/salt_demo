@@ -15,4 +15,7 @@ secret_key: ThisIsAVeryPoorSecretKey
 
 django_settings_module: demo.salt_settings
 
+demo_app_socket: '/tmp/demo_app.sock'
+
+demo_max_uwsgi_processes: 2
 ...
