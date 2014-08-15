@@ -124,4 +124,8 @@ psycopg2:
   - file_mode: 660
   - dir_mode: 770
 
+/var/media/demo-app/sample.jpeg:
+  - file.managed:
+    - source: /opt/demo-app/sample_media/sample.jpeg
+    - file_mode: 444
 ...
