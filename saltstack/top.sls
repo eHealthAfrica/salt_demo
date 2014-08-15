@@ -6,7 +6,7 @@ base:
     - users
     - python
 
-  'local':  # on a real Salt Master, put the ID name of the server here.
+  # 'local':  # on a real Salt Master, put the ID name of the server here.
     - uwsgi
     - nginx
     - postgres
