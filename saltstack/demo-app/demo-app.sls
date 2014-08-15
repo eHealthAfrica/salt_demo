@@ -20,6 +20,8 @@ demo-app-repo:
     - always_fetch: True
     - target: /opt/demo-app
     - user: www-data
+    - force: True
+    - force_checkout: True
 
 /opt/demo-app:
   file.directory:
