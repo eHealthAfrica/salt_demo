@@ -6,6 +6,12 @@ include:
   - users
   - postgres
 
+/opt:
+  file.directory:
+    - user: www-data
+    - group: staff
+    - dir_mode: 775
+
 demo-app-repo:
   file.directory:
     - name: /opt/demo-app
