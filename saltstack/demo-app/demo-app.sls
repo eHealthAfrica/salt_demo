@@ -15,7 +15,7 @@ demo-app-repo:
     - dir_mode: 775
     - file_mode: 664
   git.latest:
-    - name: https://github.com/eHealthAfrica/dev-track.git
+    - name: https://github.com/eHealthAfrica/demo-app.git
     - rev: master
     - always_fetch: True
     - target: /opt/demo-app

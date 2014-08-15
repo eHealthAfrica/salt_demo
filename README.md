@@ -27,7 +27,7 @@ Getting Started
 This demo is set up using SaltStack as its deployment engine.
 
 As suggested by Linux standards, statically served pages will be in the /srv directory, 
-the operating software will be in /opt, and log files will be in /var/log, all using "dev-track"
+the operating software will be in /opt, and log files will be in /var/log, all using "demo-app"
 as a subdirectory name.
 
 It is possible to use a Salt minion stand-alone, and these instructions assume that you
@@ -94,7 +94,7 @@ Log off your workstation and log back on to get the new group membership and set
 
 Then... set your virtual environment to the tutorial
 
-    workon dev-track
+    workon demo-app
 
 Run syncdb to load your new Postgres database:
 
