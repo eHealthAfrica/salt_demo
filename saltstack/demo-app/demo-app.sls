@@ -14,14 +14,14 @@ demo-app-repo:
     - group: staff
     - dir_mode: 775
     - file_mode: 664
+    - watch:
+      - git: demo-app-repo
   git.latest:
     - name: https://github.com/eHealthAfrica/demo-app.git
     - rev: master
     - always_fetch: True
     - target: /opt/demo-app
     - user: www-data
-    - force: True
-    - force_checkout: True
 
 /opt/demo-app:
   file.directory:
