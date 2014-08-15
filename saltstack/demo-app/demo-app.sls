@@ -98,10 +98,6 @@ psycopg2:
     - makedirs: True
     - source: salt://demo-app/demo-app-uwsgi.ini
     - template: jinja
-    #- touch  # touch the file to trigger the emperor to restart uWSGI instances
-    #- order: last
-    #- watch:
-    #  - file: demo-app-repo
 
 /opt/Envs/demo-app/.project:
   file.managed:
@@ -120,23 +116,23 @@ psycopg2:
   - require:
     - user: www-data
 
-/srv/static/demo-app:
+static_dir:
   file.directory:
-  - makedirs: True
-  - user: www-data
-  - group: staff
-  - file_mode: 660
-  - dir_mode: 770
+    - name: /srv/static/demo-app
+    - makedirs: True
+    - user: www-data
+    - group: staff
+    - file_mode: 660
+    - dir_mode: 770
 
 collectstatic:  # don't forget to put the static files in place
   cmd.run:
     - name: '/opt/Envs/demo-app/bin/python /opt/demo-app/manage.py collectstatic --noinput'
     - user: www-data
-    - watch:
-      - git: demo-app-repo
     - require:
       - file: /opt/demo-app/manage.py
-      - file: /srv/static/demo-app
+    - on_changes:
+      - file: demo-app-repo
 
 /var/media/demo-app:
   file.directory:
@@ -152,4 +148,19 @@ collectstatic:  # don't forget to put the static files in place
     - source: /opt/demo-app/sample_media/test.jpg
     - file_mode: 444
 
+kick_uwsgi:
+  file:
+    - name: /etc/uwsgi/vassals/demo-app-uwsgi.ini
+    - touch  # touch the file to trigger the emperor to restart uWSGI instances
+    - order: last
+    - on_changes:
+      - file: demo-app-repo
+
+kick_nginx:
+  service:
+    - name: nginx
+    - running
+    - order: last
+    - on_changes:
+      - file: demo-app-repo
 ...
