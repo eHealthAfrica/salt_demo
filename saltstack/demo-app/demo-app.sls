@@ -116,6 +116,15 @@ psycopg2:
   - file_mode: 460
   - dir_mode: 570
 
+collectstatic:  # don't forget to put the static files in place
+  cmd.run:
+    - name: '/opt/Envs/demo-app/bin/activate; /usr/bin/python /opt/demo-app/manage.py collectstatic --noinput'
+    - user: www-data
+    - watch:
+      - git: demo-app-repo
+    - require:
+      - file: /opt/demo-app/manage.py
+
 /var/media/demo-app:
   file.directory:
   - makedirs: True
@@ -124,8 +133,11 @@ psycopg2:
   - file_mode: 660
   - dir_mode: 770
 
-/var/media/demo-app/sample.jpeg:
-  - file.managed:
-    - source: /opt/demo-app/sample_media/sample.jpeg
+# this is a test file used to prove that the media directory actually works...
+/var/media/demo-app/sample.jpg:
+  file.copy:
+    - source: /opt/demo-app/sample_media/sample.jpg
     - file_mode: 444
+
+#
 ...
