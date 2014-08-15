@@ -38,8 +38,12 @@ demo-app-repo:
     - user: www-data
     - group: staff
     - dir_mode: 775
+    - recurse:
+      - user
+      - group
     - require:
       - user: www-data
+      - virtualenv: /opt/Envs/demo-app
   virtualenv.managed:
     - system_site_packages: True
     - requirements: /opt/demo-app/requirements.txt
@@ -118,7 +122,7 @@ psycopg2:
 
 collectstatic:  # don't forget to put the static files in place
   cmd.run:
-    - name: '/opt/Envs/demo-app/bin/activate; /usr/bin/python /opt/demo-app/manage.py collectstatic --noinput'
+    - name: '/opt/Envs/demo-app/bin/python /opt/demo-app/manage.py collectstatic --noinput'
     - user: www-data
     - watch:
       - git: demo-app-repo
@@ -139,5 +143,4 @@ collectstatic:  # don't forget to put the static files in place
     - source: /opt/demo-app/sample_media/sample.jpg
     - file_mode: 444
 
-#
 ...
