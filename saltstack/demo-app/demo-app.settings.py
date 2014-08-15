@@ -27,6 +27,7 @@ DATABASES = {
                 }
 }
 
-STATIC_ROOT = '/opt/static/demo-dev'
+STATIC_ROOT = '/srv/static/demo-dev/'
+MEDIA_ROOT = '/var/media/demo-dev/'
 
 SECRET_KEY = '{{ pillar["secret_key"] }}'
