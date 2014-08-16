@@ -7,6 +7,7 @@ base:
   '*':  # for any minion
     - common
   # 'local':
-    - demo_settings  # refer to the file "demo_settings.sls"
+    - demo-server_settings  # refer to the file "demo-server_settings.sls"
+    - demo-app_settings  # refer to the file "demo-app_settings.sls"
 # [Note: this is a YAML file. The last two lines are indented by exactly two, and then four spaces.]
 ...
