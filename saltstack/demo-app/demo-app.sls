@@ -6,26 +6,26 @@ include:
   - users
   - postgres
 
-demo_app_db_user:
+demo-app_db_user:
   postgres_user.present:
-    - name: {{ pillar['demo_app_dbuser'] }}
-    - password: {{ pillar['demo_app_dbpassword'] }}
+    - name: {{ pillar['demo-app_dbuser'] }}
+    - password: {{ pillar['demo-app_dbpassword'] }}
     - user: postgres
     - createdb: True
     - require:
       - service: postgresql
 
-demo_app_db:
+demo-app_db:
   postgres_database.present:
-    - name: {{ pillar['demo_app_dbname'] }}
+    - name: {{ pillar['demo-app_dbname'] }}
     - encoding: UTF8
     - lc_ctype: en_GB.UTF8
     - lc_collate: en_GB.UTF8
     - template: template0
-    - owner: {{ pillar['demo_app_dbuser'] }}
+    - owner: {{ pillar['demo-app_dbuser'] }}
     - user: postgres
     - require:
-      - postgres_user: demo_app_db_user
+      - postgres_user: demo-app_db_user
 
 /opt:
   file.directory:
