@@ -146,15 +146,6 @@ static_dir:
     - file_mode: 660
     - dir_mode: 770
 
-collectstatic:  # don't forget to put the static files in place
-  cmd.run:
-    - name: '/opt/Envs/demo-app/bin/python /opt/demo-app/manage.py collectstatic --noinput'
-    - user: www-data
-    - require:
-      - file: /opt/demo-app/manage.py
-    - on_changes:
-      - file: demo-app-repo
-
 /var/media/demo-app:  # a place for django to store uploaded media
   file.directory:
   - makedirs: True
@@ -169,19 +160,38 @@ collectstatic:  # don't forget to put the static files in place
     - source: /opt/demo-app/sample_media/test.jpg
     - file_mode: 444
 
+collectstatic:  # don't forget to put the static files in place
+  cmd.run:
+    - name: '/opt/Envs/demo-app/bin/python /opt/demo-app/manage.py collectstatic --noinput'
+    - user: www-data
+    - require:
+      - file: /opt/demo-app/manage.py
+    - on_changes:
+      - file: /opt/demo-app/static/*
+      #- file: demo-app-repo
+
 kick_uwsgi:
   file:
     - name: /etc/uwsgi/vassals/demo-app-uwsgi.ini
     - touch  # touch the file to trigger the emperor to restart uWSGI instances
     - order: last
     - on_changes:
-      - file: demo-app-repo
+      - file: /opt/demo-app/demo-app/*
+      - file: /opt/demo-app/demo/*
+      - file: /opt/demo-app/requirements.txt
+      - file: /opt/demo-app/templates/*
 
 kick_nginx:
-  service:
-    - name: nginx
-    - running
+#  -- I could not get a positive restart with the service -- so doing it hard
+#  service:
+#    - name: nginx
+#    - running
+  module.run:
+    - name: service.restart
+    - m_name: nginx
+# end of "the hard way"
     - order: last
     - on_changes:
       - file: demo-app-repo
+      - file: /etc/nginx/sites-enabled/*
 ...

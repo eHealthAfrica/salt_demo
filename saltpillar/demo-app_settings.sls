@@ -5,8 +5,8 @@
 
 # data for demo-app  server
 demo-app_dbengine: django.db.backends.postgresql_psycopg2
-demo-app_dbname: demo-app-demo
-demo-app_dbuser: demo-user
+demo-app_dbname: demo-app-db
+demo-app_dbuser: demo-owner
 demo-app_dbpassword: password2
 demo-app_dbhost: localhost
 demo-app_dbport: 5432
