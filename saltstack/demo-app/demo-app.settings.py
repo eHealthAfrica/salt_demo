@@ -18,12 +18,12 @@ ADMINS = (
 
 DATABASES = {
         'default': {
-                    'ENGINE': '{{ pillar["dbengine"] }}',
-                    'NAME': '{{ pillar["dbname"] }}',
-                    'USER': '{{ pillar["dbuser"] }}',
-                    'PASSWORD': '{{ pillar["dbpassword"] }}',
-                    'HOST': '{{ pillar["dbhost"] }}',
-                    'PORT': '{{ pillar["dbport"] }}',
+                    'ENGINE': '{{ pillar["demo_app_dbengine"] }}',
+                    'NAME': '{{ pillar["demo_app_dbname"] }}',
+                    'USER': '{{ pillar["demo_app_dbuser"] }}',
+                    'PASSWORD': '{{ pillar["demo_app_dbpassword"] }}',
+                    'HOST': '{{ pillar["demo_app_dbhost"] }}',
+                    'PORT': '{{ pillar["demo_app_dbport"] }}',
                 }
 }
 

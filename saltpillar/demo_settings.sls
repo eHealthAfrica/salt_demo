@@ -4,12 +4,12 @@
 ## /srv/pillar/demo_settings.sls
 
 # data for demo-app  server
-dbengine: django.db.backends.postgresql_psycopg2
-dbname: demo-app-demo
-dbuser: demo-user
-dbpassword: password2
-dbhost: localhost
-dbport: 5432
+demo_app_dbengine: django.db.backends.postgresql_psycopg2
+demo_app_dbname: demo-app-demo
+demo_app_dbuser: demo-user
+demo_app_dbpassword: password2
+demo_app_dbhost: localhost
+demo_app_dbport: 5432
 
 secret_key: ThisIsAVeryPoorSecretKey
 

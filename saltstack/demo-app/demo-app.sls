@@ -6,6 +6,27 @@ include:
   - users
   - postgres
 
+demo_app_db_user:
+  postgres_user.present:
+    - name: {{ pillar['demo_app_dbuser'] }}
+    - password: {{ pillar['demo_app_dbpassword'] }}
+    - user: postgres
+    - createdb: True
+    - require:
+      - service: postgresql
+
+demo_app_db:
+  postgres_database.present:
+    - name: {{ pillar['demo_app_dbname'] }}
+    - encoding: UTF8
+    - lc_ctype: en_GB.UTF8
+    - lc_collate: en_GB.UTF8
+    - template: template0
+    - owner: {{ pillar['demo_app_dbuser'] }}
+    - user: postgres
+    - require:
+      - postgres_user: demo_app_db_user
+
 /opt:
   file.directory:
     - user: www-data
@@ -134,7 +155,7 @@ collectstatic:  # don't forget to put the static files in place
     - on_changes:
       - file: demo-app-repo
 
-/var/media/demo-app:
+/var/media/demo-app:  # a place for django to store uploaded media
   file.directory:
   - makedirs: True
   - user: www-data

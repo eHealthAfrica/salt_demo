@@ -18,25 +18,5 @@ pg_hba.conf:
     - require:
       - pkg: postgresql-9.3
 
-db_user:
-  postgres_user.present:
-    - name: {{ pillar['dbuser'] }}
-    - password: {{ pillar['dbpassword'] }}
-    - user: postgres
-    - createdb: True
-    - require:
-      - service: postgresql
-
-djangodb:
-  postgres_database.present:
-    - name: {{ pillar['dbname'] }}
-    - encoding: UTF8
-    - lc_ctype: en_GB.UTF8
-    - lc_collate: en_GB.UTF8
-    - template: template0
-    - owner: {{ pillar['dbuser'] }}
-    - user: postgres
-    - require:
-      - postgres_user: db_user
 ...
 
