@@ -9,9 +9,9 @@ except:
     raise
 
 # noinspection PyUnresolvedReferences
-LANGUAGE_CODE = {{ salt['pillar.get']('LANGUAGE_CODE', 'en-us') }}
+LANGUAGE_CODE = "{{ salt['pillar.get']('LANGUAGE_CODE', 'en-us') }}"
 # noinspection PyUnresolvedReferences
-TIME_ZONE = {{ salt['pillar.get']('TIME_ZONE',  'UTC') }}
+TIME_ZONE = "{{ salt['pillar.get']('TIME_ZONE',  'UTC') }}"
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
